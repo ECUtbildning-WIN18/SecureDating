@@ -9,14 +9,49 @@ namespace securedating
     {
         public static List<Tuple<string, string>> users = new List<Tuple<string, string>>();
 
+        public static void Intro()
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("             ##");
+            Console.WriteLine("           ##  ##");
+            Console.WriteLine("          #      #");
+            Console.WriteLine("          #      #");
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.WriteLine("       #####    #####");
+            Console.WriteLine("      #######  #######");
+            Console.WriteLine("     ##################");
+            Console.WriteLine("      #######  #######");
+            Console.WriteLine("       #####    #####");
+            Console.WriteLine("        #####  #####");
+            Console.WriteLine("         ####  ####");
+            Console.WriteLine("          ###  ###");
+            Console.WriteLine("           ######");
+            Console.WriteLine("            ####");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("        Secure Dating");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Beep(659, 125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(659, 125);
+            Music();
+            Menu.Start();
+        }
+
+        private static void Music()
+        {
+            Thread.Sleep(167); Console.Beep(523, 125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(784, 125); Thread.Sleep(375); Console.Beep(392, 125); Thread.Sleep(375); Console.Beep(523, 125); Thread.Sleep(250); Console.Beep(392, 125); Thread.Sleep(250); Console.Beep(330, 125); Thread.Sleep(250); Console.Beep(440, 125); Thread.Sleep(125); Console.Beep(494, 125); Thread.Sleep(125); Console.Beep(466, 125); Thread.Sleep(42); Console.Beep(440, 125); Thread.Sleep(125); Console.Beep(392, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(784, 125); Thread.Sleep(125); Console.Beep(880, 125); Thread.Sleep(125); Console.Beep(698, 125); Console.Beep(784, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(587, 125); Console.Beep(494, 125); Thread.Sleep(125); Console.Beep(523, 125); Thread.Sleep(250); Console.Beep(392, 125); Thread.Sleep(250); Console.Beep(330, 125); Thread.Sleep(250); Console.Beep(440, 125); Thread.Sleep(125); Console.Beep(494, 125); Thread.Sleep(125); Console.Beep(466, 125); Thread.Sleep(42); Console.Beep(440, 125); Thread.Sleep(125); Console.Beep(392, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(784, 125); Thread.Sleep(125); Console.Beep(880, 125); Thread.Sleep(125); Console.Beep(698, 125); Console.Beep(784, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(587, 125); Console.Beep(494, 125); Thread.Sleep(375); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(415, 125); Console.Beep(440, 125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(440, 125); Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(698, 125); Thread.Sleep(125); Console.Beep(698, 125); Console.Beep(698, 125); Thread.Sleep(625); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(415, 125); Console.Beep(440, 125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(440, 125); Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(622, 125); Thread.Sleep(250); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(523, 125); Thread.Sleep(1125); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(415, 125); Console.Beep(440, 125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(440, 125); Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(698, 125); Thread.Sleep(125); Console.Beep(698, 125); Console.Beep(698, 125); Thread.Sleep(625); Console.Beep(784, 125); Console.Beep(740, 125); Console.Beep(698, 125); Thread.Sleep(42); Console.Beep(622, 125); Thread.Sleep(125); Console.Beep(659, 125); Thread.Sleep(167); Console.Beep(415, 125); Console.Beep(440, 125); Console.Beep(523, 125); Thread.Sleep(125); Console.Beep(440, 125); Console.Beep(523, 125); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(622, 125); Thread.Sleep(250); Console.Beep(587, 125); Thread.Sleep(250); Console.Beep(523, 125);
+        }
+
         public static void Start()
         {
             Console.Clear();
-            Console.WriteLine("#### START ################");
-            Console.WriteLine("# Press to choose         #");
-            Console.WriteLine("# 1. Login                #");
-            Console.WriteLine("# 2. Registry             #");
-            Console.WriteLine("###########################");
+            Console.WriteLine();
+            Console.WriteLine("  #### START ################");
+            Console.WriteLine("  # Press to choose         #");
+            Console.WriteLine("  # 1. Login                #");
+            Console.WriteLine("  # 2. Registry             #");
+            Console.WriteLine("  ###########################");
 
             int choice = 0;
 
@@ -33,7 +68,7 @@ namespace securedating
             switch (choice)
             {
                 case 1: Menu.Login(); break;
-                case 2: Menu.Registy(); break;
+                case 2: Menu.Registry(); break; 
                 default:
                     Console.WriteLine("Please pick a number in the menu");
                     Menu.Start();
@@ -82,7 +117,7 @@ namespace securedating
             }
         }
 
-        public static void Registy()
+        public static void Registry()
         {
             Console.Clear();
             Console.WriteLine("#### Registry ####");
@@ -115,7 +150,7 @@ namespace securedating
                 Console.Clear();
                 Console.WriteLine("Try again!");
                 Console.ReadKey();
-                Menu.Registy();
+                Menu.Registry();
             }
 
 
@@ -124,11 +159,12 @@ namespace securedating
         public static void MainMenu()
         {
             Console.Clear();
-            Console.WriteLine("#### Main Menu ############");
-            Console.WriteLine("# You Are in!             #");
-            Console.WriteLine("# 1. Memberlist           #");
-            Console.WriteLine("# 2. Quit                 #");
-            Console.WriteLine("###########################");
+            Console.WriteLine();
+            Console.WriteLine("  #### Main Menu ############");
+            Console.WriteLine("  # You Are in!             #");
+            Console.WriteLine("  # 1. Memberlist           #");
+            Console.WriteLine("  # 2. Quit                 #");
+            Console.WriteLine("  ###########################");
 
             string choice2 = Console.ReadLine();
 
