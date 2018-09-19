@@ -18,7 +18,6 @@ namespace securedating
             Console.WriteLine("          #      #");
             Console.WriteLine("          #      #");
             Console.ForegroundColor = ConsoleColor.Red;
-
             Console.WriteLine("       #####    #####");
             Console.WriteLine("      #######  #######");
             Console.WriteLine("     ##################");
@@ -34,7 +33,8 @@ namespace securedating
             Console.WriteLine("        Secure Dating");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Beep(659, 125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(659, 125);
-            Music();
+            Thread t = new Thread(new ThreadStart(Music));
+            t.Start();
             Menu.Start();
         }
 
