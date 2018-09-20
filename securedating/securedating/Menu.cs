@@ -141,7 +141,8 @@ namespace securedating
             catch (Exception)
             {
                 Console.WriteLine("Please dont be a jackass, press a number in the list!");
-                throw;
+                Console.ReadKey();
+                Menu.Start();
             }
 
             switch (choice)
@@ -181,8 +182,6 @@ namespace securedating
                     {
                         Console.WriteLine("wrong password");
                         Console.WriteLine($"You have {4 - attempt} attempt left!");
-
-
                     }
                 } while (attempt < 4);
                 Menu.Start();
