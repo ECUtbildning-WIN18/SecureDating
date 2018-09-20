@@ -6,9 +6,22 @@ namespace securedating
 {
     class Profile 
     {
-        public User Owner { get; }
+        public string Owner { get; }
 
         public string UserInfo { get; internal set; }
+
+        public List<string> Inbox { get; set; }
+
+        public Profile(string owner)
+        {
+            Owner = owner;
+            Inbox = new List<string>();
+        }
+
+        public void SendMessage(User reciever, string message)
+        {
+            reciever.Profile.Inbox.Add(message);
+        }
 
         public void AddUserInfo()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,7 +23,7 @@ namespace securedating
         {
             UserName = userName;
             Password = password;
-            Profile = new Profile();
+            Profile = new Profile(userName);
         }
 
         public void SetFullName(string firstName, string lastName)
