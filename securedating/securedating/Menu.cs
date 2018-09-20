@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -138,9 +139,10 @@ namespace securedating
             {
                 choice = Convert.ToInt32(Console.ReadLine());
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("Please dont be a jackass, press a number in the list!");
+                Console.WriteLine("Please don´t be a jackass, press a number in the list!");
+                //Console.WriteLine($"Exception: {e}");
                 Console.ReadKey();
                 Menu.Start();
             }
@@ -205,33 +207,38 @@ namespace securedating
             Console.WriteLine();
             Console.Write("Password:");
             string password = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine($"Your username is [{userName}] and your password is [{password}]");
-            Console.WriteLine();
-            Console.WriteLine("Is this correct? Y/N");
-            string correct = Console.ReadLine();
 
-            if (correct == "y" || correct == "Y")
+            bool userNameExist = users.Any(m => m.Item1 == $"{userName}");
+            //bool userNameExist = false;
+            if (userNameExist)
             {
-                users.Add(new Tuple<string, string>(userName, password));
-
-                //foreach (var element in users)
-                //{
-                //    Console.WriteLine($"Username: {element.Item1} and the password is: {element.Item2}");
-                //}
-                //Console.ReadKey();
-
-                Menu.Start();
+                Console.WriteLine("The username exist, please try again!");
+                Console.ReadKey();
+                Menu.Registry();
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Try again!");
-                Console.ReadKey();
-                Menu.Registry();
+                Console.WriteLine($"Your username is [{userName}] and your password is [{password}]");
+                Console.WriteLine();
+                Console.WriteLine("Is this correct? Y/N");
+                string correct = Console.ReadLine();
+
+                if (correct == "y" || correct == "Y")
+                {
+                    users.Add(new Tuple<string, string>(userName, password));
+                    Menu.Start();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Try again!");
+                    Console.ReadKey();
+                    Menu.Registry();
+                }
+
+
             }
-
-
         }
 
         public static void MainMenu()
