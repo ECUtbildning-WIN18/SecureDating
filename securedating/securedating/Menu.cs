@@ -43,7 +43,7 @@ namespace securedating
             Console.WriteLine("        Secure Dating");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Beep(659, 125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(659, 125);
-            Thread t = new Thread(new ThreadStart(Music));
+            Thread t = new Thread(new ThreadStart(Music2));
             t.Start();
             Menu.Start();
         }
@@ -193,7 +193,6 @@ namespace securedating
                 Console.WriteLine("you are not a member");
                 Console.ReadKey();
                 Menu.Start();
-
             }
         }
 
@@ -227,6 +226,7 @@ namespace securedating
                 if (correct == "y" || correct == "Y")
                 {
                     users.Add(new Tuple<string, string>(userName, password));
+                    User newUser = new User(userName, password);
                     Menu.Start();
                 }
                 else
