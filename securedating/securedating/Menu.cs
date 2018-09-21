@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
+
 namespace securedating
 {
     class Menu
     {
         public static List<Tuple<string, string>> users = new List<Tuple<string, string>>();
 
+        public static List<User> userList { get; set; } = new List<User>();
+        
         public static void Intro()
         {
             //Add DummieUsers
@@ -28,24 +31,26 @@ namespace securedating
             Console.WriteLine("          #      #");
             Console.WriteLine("          #      #");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("       #####    #####");
+            Console.WriteLine("    ########    ########");
+            Console.WriteLine("   ##########  ##########");
+            Console.WriteLine("  ########################");
+            Console.WriteLine("   ######################");
+            Console.WriteLine("    ########    ########");
+            Console.WriteLine("     #######    #######");
             Console.WriteLine("      #######  #######");
-            Console.WriteLine("     ##################");
-            Console.WriteLine("      #######  #######");
-            Console.WriteLine("       #####    #####");
-            Console.WriteLine("        #####  #####");
-            Console.WriteLine("         ####  ####");
-            Console.WriteLine("          ###  ###");
+            Console.WriteLine("       #####   ######");
+            Console.WriteLine("        ############");
+            Console.WriteLine("         ##########");
+            Console.WriteLine("          ########");
             Console.WriteLine("           ######");
             Console.WriteLine("            ####");
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("        Secure Dating");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Beep(659, 125); Console.Beep(659, 125); Thread.Sleep(125); Console.Beep(659, 125);
-            Thread t = new Thread(new ThreadStart(Music2));
+            Thread.Sleep(1500);
+            Thread t = new Thread(new ThreadStart(Music));
             t.Start();
-            Menu.Start();
         }
 
         private static void Music()
@@ -131,6 +136,7 @@ namespace securedating
             Console.WriteLine("  # Press to choose         #");
             Console.WriteLine("  # 1. Login                #");
             Console.WriteLine("  # 2. Registry             #");
+            Console.WriteLine("  # 3. Quit                 #");
             Console.WriteLine("  ###########################");
 
             int choice = 0;
@@ -141,7 +147,7 @@ namespace securedating
             }
             catch (Exception e)
             {
-                Console.WriteLine("Please don´t be a jackass, press a number in the list!");
+                Console.WriteLine("Please don't be a jackass, press a number in the list!");
                 //Console.WriteLine($"Exception: {e}");
                 Console.ReadKey();
                 Menu.Start();
@@ -150,7 +156,9 @@ namespace securedating
             switch (choice)
             {
                 case 1: Menu.Login(); break;
-                case 2: Menu.Registry(); break; 
+                case 2: Menu.Registry(); break;
+                case 3: Environment.Exit(0);
+                    break;
                 default:
                     Console.WriteLine("Please pick a number in the menu");
                     Menu.Start();
@@ -199,16 +207,24 @@ namespace securedating
         public static void Registry()
         {
             Console.Clear();
+
             Console.WriteLine("#### Registry ####");
+
             Console.WriteLine();
+
             Console.Write("Username:");
+
             string userName = Console.ReadLine();
+
             Console.WriteLine();
+
             Console.Write("Password:");
+
             string password = Console.ReadLine();
 
             bool userNameExist = users.Any(m => m.Item1 == $"{userName}");
             //bool userNameExist = false;
+
             if (userNameExist)
             {
                 Console.WriteLine("The username exist, please try again!");
@@ -218,25 +234,35 @@ namespace securedating
             else
             {
                 Console.Clear();
+
                 Console.WriteLine($"Your username is [{userName}] and your password is [{password}]");
+
                 Console.WriteLine();
+
                 Console.WriteLine("Is this correct? Y/N");
+
                 string correct = Console.ReadLine();
 
                 if (correct == "y" || correct == "Y")
                 {
                     users.Add(new Tuple<string, string>(userName, password));
-                    User newUser = new User(userName, password);
+
+                    userList.Add(new User(userName, password));
+
                     Menu.Start();
                 }
                 else
                 {
                     Console.Clear();
+
                     Console.WriteLine("Try again!");
+
                     Console.ReadKey();
+
                     Menu.Registry();
                 }
 
+                
 
             }
         }
@@ -250,13 +276,16 @@ namespace securedating
             Console.WriteLine("  # 1. Memberlist           #");
             Console.WriteLine("  # 2. Quit                 #");
             Console.WriteLine("  ###########################");
+            
 
             string choice2 = Console.ReadLine();
 
             switch (choice2)
             {
                 case "1": Menu.Memberlist(); break;
+
                 case "2": Menu.Start(); break;
+
                 default:
                     Console.WriteLine("Please pick a number in the menu");
                     Menu.MainMenu();
