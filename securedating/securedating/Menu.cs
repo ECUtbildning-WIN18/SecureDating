@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+
 
 
 namespace securedating
@@ -11,19 +15,13 @@ namespace securedating
     {
         public static List<Tuple<string, string>> users = new List<Tuple<string, string>>();
 
-        public static List<User> userList { get; set; } = new List<User>();
+        public static Dictionary<string, User> Accounts = new Dictionary<string, User>();
+
+        public static User LoggedUser { get; set; }
         
         public static void Intro()
         {
-            //Add DummieUsers
-            users.Add(new Tuple<string, string>("Lisa", "password"));
-            users.Add(new Tuple<string, string>("Gustaf", "password"));
-            users.Add(new Tuple<string, string>("Kalle", "password"));
-            users.Add(new Tuple<string, string>("Mimmi", "password"));
-            users.Add(new Tuple<string, string>("Åsa Nisse", "password"));
-            users.Add(new Tuple<string, string>("Greta", "password"));
-            users.Add(new Tuple<string, string>("Anna", "password"));
-
+       
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("             ##");
@@ -185,6 +183,11 @@ namespace securedating
                     attempt++;
                     if (users.Exists(e => e.Item2 == password))
                     {
+                        if (Accounts.ContainsKey(userName))
+                        {
+                            LoggedUser = Accounts[userName];
+                        }
+
                         Menu.MainMenu();
                         break;
                     }
@@ -247,7 +250,7 @@ namespace securedating
                 {
                     users.Add(new Tuple<string, string>(userName, password));
 
-                    userList.Add(new User(userName, password));
+                    Accounts.Add(userName, new User(userName, password));
 
                     Menu.Start();
                 }
@@ -273,18 +276,29 @@ namespace securedating
             Console.WriteLine();
             Console.WriteLine("  #### Main Menu ############");
             Console.WriteLine("  # You Are in!             #");
-            Console.WriteLine("  # 1. Memberlist           #");
-            Console.WriteLine("  # 2. Quit                 #");
+            Console.WriteLine("  # 1. Member list          #");
+            Console.WriteLine("  # 2. Send Message         #");
+            Console.WriteLine("  # 3. View Inbox           #");
+            Console.WriteLine("  # 4. Logout               #");
             Console.WriteLine("  ###########################");
-            
 
+            
             string choice2 = Console.ReadLine();
 
             switch (choice2)
             {
-                case "1": Menu.Memberlist(); break;
+                case "1": Menu.Memberlist();
+                    break;
 
-                case "2": Menu.Start(); break;
+                case "2":
+                    SendMessage();
+                    break;
+
+                case "3": Menu.ViewInbox();
+                    break;
+
+                case "4": Menu.Start();
+                    break;
 
                 default:
                     Console.WriteLine("Please pick a number in the menu");
@@ -292,7 +306,6 @@ namespace securedating
                     break;
             }
         }
-
         public static void Memberlist()
         {
             Console.Clear();
@@ -318,6 +331,60 @@ namespace securedating
             Menu.MainMenu();
         }
 
-        
+        public static void SendMessage()
+        {
+            Console.Clear();
+
+            User sender = LoggedUser;
+
+            User Reciever;
+
+            Console.WriteLine("Send Message to:");
+
+            foreach (var account in Accounts) // prints out all users
+            {
+                Console.WriteLine(account.Key);
+            }
+
+            string recipient = Console.ReadLine();
+            if (Accounts.ContainsKey(recipient))
+            {
+                Reciever = Accounts[recipient];
+            }
+
+            bool userNameNotExist = users.Any(m => $"{recipient}" == m.Item1);
+
+            if (userNameNotExist == false)
+            {
+                Console.WriteLine("That user doesn't exist, try again!");
+                Console.ReadKey();
+                SendMessage();
+            }
+            else
+                Console.WriteLine("Write your message:");
+
+            string message = Console.ReadLine();
+
+            sender.Profile.SendMessage(Accounts[recipient], message);
+
+            MainMenu();
+
+        }
+
+        public static void ViewInbox()
+        {
+            Console.Clear();
+            Console.WriteLine("Your messages:");
+            Console.WriteLine();
+
+            foreach (string message in LoggedUser.Profile.Inbox)
+            {
+                Console.WriteLine(message);
+            }
+
+            Console.ReadLine();
+
+        }
+
     }
 }
